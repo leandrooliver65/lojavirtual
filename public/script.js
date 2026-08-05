@@ -1,5 +1,6 @@
 const SHEET_URL =
   'https://docs.google.com/spreadsheets/d/1MNtLOsdPDsazUgAomDs7dcQ-Ev5NZ-n2DZdut83SNT0/export?format=csv&usp=sharing';
+const BASE_PATH = window.location.pathname.includes('/lojavirtual') ? '/lojavirtual/' : '/';
 
 const categoryNav = document.getElementById('categoryNav');
 const productsGrid = document.getElementById('productsGrid');

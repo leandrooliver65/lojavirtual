@@ -11,16 +11,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leandroolivpint/lojavirtual.git"
+    "url": "git+https://github.com/leandrooliver65/lojavirtual.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/leandroolivpint/lojavirtual/issues"
+    "url": "https://github.com/leandrooliver65/lojavirtual/issues"
   },
-  "homepage": "https://github.com/leandroolivpint/lojavirtual#readme",
+  "homepage": "https://github.com/leandrooliver65/lojavirtual#readme",
   "dependencies": {
     "antd": "^6.5.3",
     "express": "^5.2.1",

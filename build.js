@@ -27,4 +27,11 @@ function copyRecursive(src, dest) {
 }
 
 copyRecursive(sourceDir, outputDir);
+
+const source404 = path.join(__dirname, 'public', '404.html');
+const target404 = path.join(outputDir, '404.html');
+if (fs.existsSync(source404)) {
+  fs.copyFileSync(source404, target404);
+}
+
 console.log('Build concluído em ./build');
