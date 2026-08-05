@@ -1,0 +1,28 @@
+{
+  "name": "lojavirtual",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandroolivpint/lojavirtual.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/leandroolivpint/lojavirtual/issues"
+  },
+  "homepage": "https://github.com/leandroolivpint/lojavirtual#readme",
+  "dependencies": {
+    "antd": "^6.5.3",
+    "express": "^5.2.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}

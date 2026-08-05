@@ -1,0 +1,43 @@
+<svg width="1280" height="420" viewBox="0 0 1280 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .brand { font-family: Georgia, 'Times New Roman', serif; font-weight: 700; }
+      .small { font-family: 'Trebuchet MS', Arial, sans-serif; font-weight: 700; }
+    </style>
+  </defs>
+
+  <g transform="translate(120 20)">
+    <g transform="translate(0 20)">
+      <path d="M66 24C66 9.64 77.64 0 92 0C106.36 0 118 9.64 118 24C118 37 108 48 92 60C76 48 66 37 66 24Z" fill="#B97A2B"/>
+      <path d="M92 0C76.8 0 64 12.8 64 28C64 44.5 75.1 55.1 92 69.9C108.2 55.6 120 44.5 120 28C120 12.8 107.2 0 92 0Z" fill="#C88C33"/>
+      <path d="M78 30C78 16 84.6 10 92 4.7C99.1 10.1 106 17.3 106 30C106 42.8 98 51.5 92 57.1C86 51.8 78 42.5 78 30Z" fill="#E2B968"/>
+      <path d="M73 70H111V145C111 161.6 97.6 175 81 175H102.9C86.3 175 73 161.6 73 145V70Z" fill="#4E2F22"/>
+      <path d="M59 145H124V166C124 174.8 116.8 182 108 182H62C53.2 182 46 174.8 46 166V145H59Z" fill="#4E2F22"/>
+      <path d="M70 146H113V158.5C113 164.1 108.5 168.6 102.9 168.6H81.1C75.5 168.6 71 164.1 71 158.5V146H70Z" fill="#7A4B2C"/>
+    </g>
+
+    <g transform="translate(590 20)">
+      <path d="M66 24C66 9.64 77.64 0 92 0C106.36 0 118 9.64 118 24C118 37 108 48 92 60C76 48 66 37 66 24Z" fill="#B97A2B"/>
+      <path d="M92 0C76.8 0 64 12.8 64 28C64 44.5 75.1 55.1 92 69.9C108.2 55.6 120 44.5 120 28C120 12.8 107.2 0 92 0Z" fill="#C88C33"/>
+      <path d="M78 30C78 16 84.6 10 92 4.7C99.1 10.1 106 17.3 106 30C106 42.8 98 51.5 92 57.1C86 51.8 78 42.5 78 30Z" fill="#E2B968"/>
+      <path d="M73 70H111V145C111 161.6 97.6 175 81 175H102.9C86.3 175 73 161.6 73 145V70Z" fill="#4E2F22"/>
+      <path d="M59 145H124V166C124 174.8 116.8 182 108 182H62C53.2 182 46 174.8 46 166V145H59Z" fill="#4E2F22"/>
+      <path d="M70 146H113V158.5C113 164.1 108.5 168.6 102.9 168.6H81.1C75.5 168.6 71 164.1 71 158.5V146H70Z" fill="#7A4B2C"/>
+    </g>
+  </g>
+
+  <g transform="translate(210 140)">
+    <text x="0" y="120" class="brand" font-size="161" fill="#4A2B1F" letter-spacing="-8">Vela</text>
+    <text x="460" y="120" class="brand" font-size="161" fill="#4A2B1F" letter-spacing="-6">&amp; Luz</text>
+  </g>
+
+  <g transform="translate(360 255)">
+    <line x1="0" y1="0" x2="220" y2="0" stroke="#C38A3D" stroke-width="5"/>
+    <circle cx="285" cy="0" r="12" fill="#C38A3D"/>
+    <line x1="325" y1="0" x2="560" y2="0" stroke="#C38A3D" stroke-width="5"/>
+  </g>
+
+  <g transform="translate(500 300)">
+    <text x="0" y="35" class="small" font-size="30" fill="#4A2B1F" letter-spacing="9">CASA DE CERA</text>
+  </g>
+</svg>

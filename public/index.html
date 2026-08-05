@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vela & Luz</title>
+    <meta
+      name="description"
+      content="Loja virtual de velas, castiçais e itens para casa de cera."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Material+Symbols+Outlined:wght@400;GRAD@0;opsz@24&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="brand-block">
+          <div class="logo-circle">
+            <img src="logo.png" alt="Logo da loja Vela & Luz" class="site-logo" />
+          </div>
+          <div class="brand-copy">
+            <div class="brand-name">Vela & Luz</div>
+            <div class="brand-tag">Casa de Cera</div>
+          </div>
+        </div>
+
+        <nav class="top-nav" aria-label="Menu principal">
+          <a href="#">Início</a>
+          <a href="#">Produtos</a>
+          <a href="#">Velas</a>
+          <a href="#">Castiçais</a>
+          <a href="#">Contato</a>
+        </nav>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <div class="sidebar-header">
+            <h2>Categorias</h2>
+          </div>
+          <nav id="categoryNav" aria-label="Navegação por categorias"></nav>
+        </aside>
+
+        <main class="main-content">
+          <section class="carousel-section hero-carousel-section" aria-label="Destaques">
+            <div class="section-heading">
+              <h2>Destaques</h2>
+            </div>
+            <div id="antdCarouselHost" class="antd-carousel-host"></div>
+          </section>
+
+          <section class="products-section">
+            <div class="section-heading">
+              <h2>Produtos</h2>
+            </div>
+            <div id="productsGrid" class="products-grid" aria-live="polite"></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/antd@6.5.3/dist/antd.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/antd@6.5.3/dist/reset.css" />
+    <link rel="stylesheet" href="https://unpkg.com/antd@6.5.3/dist/antd.min.css" />
+    <script>
+      const antdCarouselHost = document.getElementById('antdCarouselHost');
+      let antdRoot = null;
+
+      window.renderAntdCarousel = function renderAntdCarousel(products) {
+        if (!antdCarouselHost || !window.React || !window.ReactDOM || !window.antd) {
+          return;
+        }
+
+        const { Carousel, Card, Typography, Tag } = window.antd;
+        const slides = (products || []).slice(0, 4);
+
+        if (!slides.length) {
+          antdCarouselHost.innerHTML = '';
+          return;
+        }
+
+        if (!antdRoot) {
+          antdRoot = ReactDOM.createRoot(antdCarouselHost);
+        }
+
+        const heroSlides = slides.map((product) =>
+          React.createElement(
+            'div',
+            { key: product.name, className: 'hero-carousel-slide' },
+            React.createElement(
+              Card,
+              {
+                hoverable: true,
+                className: 'hero-card',
+                cover: React.createElement('img', {
+                  src: product.image,
+                  alt: product.name,
+                  className: 'hero-card-image'
+                })
+              },
+              React.createElement(
+                'div',
+                { className: 'hero-card-body' },
+                React.createElement(Tag, { color: 'gold' }, product.category),
+                React.createElement(
+                  Typography.Title,
+                  { level: 4, className: 'hero-card-title' },
+                  product.name
+                ),
+                React.createElement('div', { className: 'hero-card-price' }, product.price),
+                React.createElement(
+                  'a',
+                  {
+                    className: 'hero-card-link',
+                    href: product.link || '#',
+                    target: '_blank',
+                    rel: 'noreferrer noopener'
+                  },
+                  'Ver produto'
+                )
+              )
+            )
+          )
+        );
+
+        const carouselElement = React.createElement(
+          Carousel,
+          {
+            autoplay: true,
+            dots: true,
+            autoplaySpeed: 4500,
+            effect: 'fade',
+            className: 'hero-carousel'
+          },
+          heroSlides
+        );
+
+        antdRoot.render(carouselElement);
+      };
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
