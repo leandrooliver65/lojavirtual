@@ -3,9 +3,13 @@ const SHEET_URL =
 
 const categoryNav = document.getElementById('categoryNav');
 const productsGrid = document.getElementById('productsGrid');
+const highlightHost = document.getElementById('antdCarouselHost');
+const searchInput = document.getElementById('searchInput');
 
 let products = [];
 let currentCategory = 'Todos';
+let searchQuery = '';
+let highlightIndex = 0;
 
 function parseCSV(text) {
   const rows = [];
@@ -68,6 +72,14 @@ function normalizeProduct(row) {
   };
 }
 
+function normalizeText(value) {
+  return (value || '')
+    .toString()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
 function getCategories() {
   const categories = [...new Set(products.map((product) => product.category))];
   return ['Todos', ...categories];
@@ -99,10 +111,90 @@ function renderCategoryMenu() {
 }
 
 function getVisibleProducts() {
-  return currentCategory === 'Todos'
-    ? products
-    : products.filter((product) => product.category === currentCategory);
+  const normalizedQuery = normalizeText(searchQuery);
+
+  const byCategory =
+    currentCategory === 'Todos'
+      ? products
+      : products.filter((product) => product.category === currentCategory);
+
+  if (!normalizedQuery) {
+    return byCategory;
+  }
+
+  return byCategory.filter((product) => {
+    const haystack = [product.name, product.category, product.price].join(' ');
+    return normalizeText(haystack).includes(normalizedQuery);
+  });
 }
+
+function renderHighlightCard(productList) {
+  const featuredProducts = (productList || []).slice(0, 3);
+
+  if (!highlightHost) {
+    return;
+  }
+
+  if (!featuredProducts.length) {
+    highlightHost.innerHTML = '<div class="empty-state">Nenhum destaque disponível no momento.</div>';
+    return;
+  }
+
+  const currentProduct = featuredProducts[highlightIndex % featuredProducts.length];
+
+  highlightHost.innerHTML = `
+    <div class="highlight-card">
+      <div class="highlight-media">
+        <img class="highlight-image" src="${currentProduct.image}" alt="${currentProduct.name}" />
+      </div>
+      <div class="highlight-content">
+        <span class="highlight-pill">${currentProduct.category}</span>
+        <h3 class="highlight-title">${currentProduct.name}</h3>
+        <p class="highlight-price">${currentProduct.price}</p>
+        <a class="highlight-link" href="${currentProduct.link}" target="_blank" rel="noreferrer noopener">
+          Ver produto
+        </a>
+      </div>
+    </div>
+
+    <div class="highlight-controls" aria-label="Paginação de destaques">
+      <button type="button" class="highlight-nav" data-direction="prev" aria-label="Produto anterior">←</button>
+      <div class="highlight-dots" role="tablist" aria-label="Selecionar destaque">
+        ${featuredProducts
+          .map(
+            (product, index) => `
+              <button
+                type="button"
+                class="highlight-dot ${index === highlightIndex ? 'active' : ''}"
+                data-index="${index}"
+                aria-label="Ir para ${product.name}"
+              ></button>
+            `
+          )
+          .join('')}
+      </div>
+      <button type="button" class="highlight-nav" data-direction="next" aria-label="Próximo produto">→</button>
+    </div>
+  `;
+
+  highlightHost.querySelectorAll('.highlight-dot, .highlight-nav').forEach((control) => {
+    control.addEventListener('click', () => {
+      if (control.classList.contains('highlight-dot')) {
+        highlightIndex = Number(control.dataset.index || 0);
+      } else {
+        const direction = control.dataset.direction === 'next' ? 1 : -1;
+        highlightIndex = (highlightIndex + direction + featuredProducts.length) % featuredProducts.length;
+      }
+
+      renderHighlightCard(products);
+    });
+  });
+}
+
+window.renderAntdCarousel = function renderAntdCarousel(productList) {
+  highlightIndex = 0;
+  renderHighlightCard(productList);
+};
 
 function renderProducts() {
   const visibleProducts = getVisibleProducts();
@@ -181,6 +273,13 @@ async function loadProducts() {
 
   renderCategoryMenu();
   renderProducts();
+
+  if (searchInput) {
+    searchInput.addEventListener('input', (event) => {
+      searchQuery = event.target.value.trim();
+      renderProducts();
+    });
+  }
 
   if (window.renderAntdCarousel) {
     window.renderAntdCarousel(products);
