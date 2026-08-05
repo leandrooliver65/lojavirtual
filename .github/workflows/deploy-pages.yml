@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -35,13 +36,20 @@ jobs:
       - name: Build static site
         run: npm run build
 
-      - name: Add .nojekyll
-        run: touch ./build/.nojekyll
+      - name: Ensure site root
+        run: |
+          mkdir -p ./site
+          cp ./build/index.html ./site/index.html
+          cp ./build/styles.css ./site/styles.css
+          cp ./build/script.js ./site/script.js
+          cp ./build/logo.png ./site/logo.png
+          cp ./build/404.html ./site/404.html 2>/dev/null || true
+          touch ./site/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./build
+          path: ./site
 
       - name: Deploy to GitHub Pages
         id: deployment
