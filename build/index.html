@@ -14,14 +14,15 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Material+Symbols+Outlined:wght@400;GRAD@0;opsz@24&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+    <link rel="stylesheet" href="./public/styles.css" />
   </head>
   <body>
     <div class="page-shell">
       <header class="site-header">
         <div class="brand-block">
           <div class="logo-circle">
-            <img src="logo.png" alt="Logo da loja Vela & Luz" class="site-logo" />
+            <img src="./public/logo.png" alt="Logo da loja Vela & Luz" class="site-logo" />
           </div>
           <div class="brand-copy">
             <div class="brand-name">Vela & Luz</div>
@@ -47,6 +48,13 @@
         </aside>
 
         <main class="main-content">
+          <section class="search-bar-section" aria-label="Buscar produtos">
+            <div class="search-bar">
+              <span class="iconify search-icon" data-icon="mdi:search" aria-hidden="true"></span>
+              <input id="searchInput" type="search" placeholder="Buscar produtos..." aria-label="Buscar produtos" />
+            </div>
+          </section>
+
           <section class="carousel-section hero-carousel-section" aria-label="Destaques">
             <div class="section-heading">
               <h2>Destaques</h2>
@@ -145,6 +153,6 @@
         antdRoot.render(carouselElement);
       };
     </script>
-    <script src="script.js"></script>
+    <script src="./public/script.js"></script>
   </body>
 </html>
