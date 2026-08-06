@@ -7,7 +7,16 @@ const port = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  const indexPath = path.join(__dirname, 'index.html');
+  const publicIndexPath = path.join(__dirname, 'public', 'index.html');
+
+  if (require('fs').existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else if (require('fs').existsSync(publicIndexPath)) {
+    res.sendFile(publicIndexPath);
+  } else {
+    res.status(404).send('Página não encontrada');
+  }
 });
 
 app.listen(port, () => {
